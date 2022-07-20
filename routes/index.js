@@ -4,7 +4,6 @@ const router = express.Router()
 const userController = require('../controllers').user;
 const itemController = require('../controllers').item;
 const orderController = require('../controllers').order;
-const orderdetailController = require('../controllers').orderdetail;
 
 /* Register and Login */
 router.post('/api/register', userController.add);
@@ -29,12 +28,5 @@ router.get('/api/order/:id', orderController.getById);
 router.post('/api/order', orderController.add);
 router.put('/api/order/:id', orderController.update);
 router.delete('/api/order/:id', orderController.delete);
-
-/* OrderDetail Router */
-router.get('/api/orderdetails', orderdetailController.list);
-router.get('/api/orderdetail/:id', orderdetailController.getById);
-router.post('/api/orderdetail', orderdetailController.add);
-router.put('/api/orderdetail/:id', orderdetailController.update);
-router.delete('/api/orderdetail/:id', orderdetailController.delete);
 
 module.exports = router;

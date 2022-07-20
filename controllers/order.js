@@ -7,7 +7,7 @@ module.exports = {
         return Order.findAll()
             .then((orders) => res.status(200).send(orders))
             .catch((error) => {
-                res.status(500).send(error)
+                res.status(400).send(error)
             })
     },
 
@@ -39,12 +39,17 @@ module.exports = {
 
     add(req, res) {
         return Order.create({
-            tglTransaksi: req.body.tglTransaksi,
+            dateOrder: req.body.dateOrder,
+            userId: req.body.userId,
             status: req.body.status
         })
-            .then((order) => res.status(201).send(order))
-            .catch((error) => {
-                res.status(500).send(error)
+            .then(() => res.status(201).send({
+                message: 'Order berhasil ditambahkan.'
+            }))
+            .catch(() => {
+                res.status(404).send({
+                    message: 'Order gagal ditambahkan.'
+                })
             })
     },
 
@@ -57,37 +62,44 @@ module.exports = {
                     })
                 }
                 return order.update({
-                    tglTransaksi: req.body.tglTransaksi,
+                    dateOrder: req.body.dateOrder,
+                    userId: req.body.userId,
                     status: req.body.status
                 })
-                .then((order) => res.status(200).send(order))
-                .catch((error) => {
-                    res.status(500).send(error)
-                })
+                    .then(() => res.status(201).send({
+                        message: 'Order berhasil diperbarui.'
+                    }))
+                    .catch((error) => {
+                        res.status(404).send({
+                            message: 'Order gagal diperbarui.'
+                        })
+                    })
             })
             .catch((error) => {
                 res.status(400).send(error)
             })
     },
-    
+
     delete(req, res) {
         return Order.findByPk(req.params.id)
-        .then((order) => {
-            if (!order) {
-                return res.status(404).send({
-                    message: 'Order Not Found'
-                })
-            }
-            return order.destroy()
-                .then(() => res.status(204).send({
-                    message: "Order is deleted"
-                }))
-                .catch((error) => {
-                    res.status(400).send(error)
-                })
-        })
-        .catch((error) => {
-            res.status(200).send(error)
-        })
+            .then((order) => {
+                if (!order) {
+                    return res.status(404).send({
+                        message: 'Order Not Found'
+                    })
+                }
+                return order.destroy()
+                    .then(() => res.status(201).send({
+                        message: 'Order berhasil dihapus.'
+                    }))
+                    .catch(() => {
+                        res.status(404).send({
+                            message: 'Order gagal dihapus.'
+                        })
+                    })
+            })
+            .catch((error) => {
+                res.status(400).send(error)
+            })
     }
 }

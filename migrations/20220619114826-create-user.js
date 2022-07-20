@@ -28,9 +28,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      orderId: {
-        type: Sequelize.INTEGER
-      },
+      // orderId: {
+      //   type: Sequelize.INTEGER
+      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

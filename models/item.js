@@ -17,17 +17,17 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     description: DataTypes.STRING,
     price: DataTypes.STRING,
-    qty: DataTypes.INTEGER
+    qty: DataTypes.INTEGER,
+    orderId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Item',
   });
   
   Item.associate = function(models) {
-    Item.belongsToMany(models.Order, {
-      through: 'OrderDetail',
-      as: 'orders',
-      foreignKey: 'itemId'
+    Item.belongsTo(models.Order, {
+      foreignKey: 'orderId',
+      as: 'orders'
     })
   }
   return Item;

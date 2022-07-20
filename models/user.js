@@ -18,17 +18,16 @@ module.exports = (sequelize, DataTypes) => {
     lastName: DataTypes.STRING,
     userName: DataTypes.STRING,
     email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    orderId: DataTypes.INTEGER
+    password: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'User',
   });
 
   User.associate = function(models) {
-    User.belongsTo(models.Order, {
-      foreignKey: 'orderId',
-      as: 'order'
+    User.hasMany(models.Order, {
+      foreignKey: 'userId',
+      as: 'orders'
     })
   }
   return User;

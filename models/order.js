@@ -14,7 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Order.init({
-    tglTransaksi: DataTypes.DATE,
+    dateOrder: DataTypes.DATE,
+    userId: DataTypes.INTEGER,
     status: DataTypes.STRING
   }, {
     sequelize,
@@ -22,15 +23,14 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Order.associate = function(models) {
-    Order.hasMany(models.User, {
-      foreignKey: 'orderId',
+    Order.belongsTo(models.User, {
+      foreignKey: 'userId',
       as: 'users'
     })
 
-    Order.belongsToMany(models.Item, {
-      through: 'OrderDetail',
-      as: 'items',
-      foreignKey: 'orderId'
+    Order.hasMany(models.Item, {
+      foreignKey: 'orderId',
+      as: 'items'
     })
   }
   return Order;

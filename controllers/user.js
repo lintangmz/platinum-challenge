@@ -8,7 +8,7 @@ module.exports = {
         })
             .then((users) => res.status(200).send(users))
             .catch((error) => {
-                res.status(500).send(error)
+                res.status(400).send(error)
             })
     },
 
@@ -22,11 +22,11 @@ module.exports = {
             .then((user) => {
                 if (!user) {
                     return res.status(404).send({
-                        message: 'log in gagal'
+                        message: 'Log in gagal.'
                     })
                 }
-                return res.status(200).send({
-                    message: 'log in berhasil'
+                return res.status(201).send({
+                    message: 'Log in berhasil.'
                 })
             })
             .catch((error) => {
@@ -41,7 +41,7 @@ module.exports = {
             .then((user) => {
                 if (!user) {
                     return res.status(404).send({
-                        message: 'User Not Found'
+                        message: 'User tidak ditemukan.'
                     })
                 }
                 return res.status(200).send(user)
@@ -57,14 +57,15 @@ module.exports = {
             lastName: req.body.lastName,
             userName: req.body.userName,
             email: req.body.email,
-            password: req.body.password,
-            orderId: req.body.orderId
+            password: req.body.password
         })
             .then(() => res.status(201).send({
-                message: 'Register Berhasil'
+                message: 'Register Berhasil.'
             }))
-            .catch((error) => {
-                res.status(400).send(error);
+            .catch(() => {
+                res.status(404).send({
+                    message: 'Register Gagal.'
+                });
             });
     },
 
@@ -73,7 +74,7 @@ module.exports = {
             .then((user) => {
                 if (!user) {
                     return res.status(404).send({
-                        message: 'User Not Found'
+                        message: 'User tidak ditemukan.'
                     })
                 }
                 return user.update({
@@ -81,12 +82,15 @@ module.exports = {
                     lastName: req.body.lastName,
                     userName: req.body.userName,
                     email: req.body.email,
-                    password: req.body.password,
-                    orderId: req.body.orderId
+                    password: req.body.password
                 })
-                    .then(() => res.status(200).send({ message: 'User is Updated' }))
-                    .catch((error) => {
-                        res.status(400).send(error)
+                    .then(() => res.status(201).send({
+                        message: 'User berhasil diperbarui.'
+                    }))
+                    .catch(() => {
+                        res.status(404).send({
+                            message: 'User gagal diperbarui.'
+                        })
                     })
             })
     },
@@ -96,13 +100,17 @@ module.exports = {
             .then((user) => {
                 if (!user) {
                     return res.status(404).send({
-                        message: 'User Not Found'
+                        message: 'User tidak ditemukan.'
                     })
                 }
                 return user.destroy()
-                    .then(() => res.status(204).send({ message: "User is Deleted" }))
-                    .catch((error) => {
-                        res.status(400).send(error);
+                    .then(() => res.status(201).send({
+                        message: 'User berhasil dihapus.'
+                    }))
+                    .catch(() => {
+                        res.status(404).send({
+                            message: 'User gagal dihapus.'
+                        });
                     });
             })
             .catch((error) => {

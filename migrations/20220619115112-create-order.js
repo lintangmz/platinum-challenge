@@ -8,8 +8,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      tglTransaksi: {
+      dateOrder: {
         type: Sequelize.DATE
+      },
+      userId: {
+        allowNull: false,
+        type: Sequelize.INTEGER
       },
       status: {
         type: Sequelize.STRING
