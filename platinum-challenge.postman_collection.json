@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"firstName\": \"Lintang\",\r\n    \"lastName\": \"MZ\",\r\n    \"userName\": \"lintangmz\",\r\n    \"email\": \"lintangmz@email.com\",\r\n    \"password\": \"root\"\r\n}",
+					"raw": "{\r\n    \"firstName\": \"Lintang\",\r\n    \"lastName\": \"MZ\",\r\n    \"username\": \"lintangmz\",\r\n    \"email\": \"lintangmz@email.com\",\r\n    \"password\": \"root\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -35,15 +35,12 @@
 		},
 		{
 			"name": "login",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"lintangmz@email.com\",\r\n    \"password\": \"root\"\r\n}",
+					"raw": "{\r\n    \"username\": \"lintangmz\",\r\n    \"password\": \"root\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -59,6 +56,31 @@
 					"path": [
 						"api",
 						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "authorization",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJsaW50YW5nbXoiLCJpYXQiOjE2NTg0MTAzMTB9.S5RJjTGbYXIKWJZszXTkVAHqphnNA2mZSPsqP50_k_c",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/api/profile",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"profile"
 					]
 				}
 			},
