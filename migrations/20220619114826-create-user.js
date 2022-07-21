@@ -16,8 +16,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      userName: {
+      username: {
         allowNull: false,
+        unique: true,
         type: Sequelize.STRING
       },
       email: {
@@ -28,9 +29,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      // orderId: {
-      //   type: Sequelize.INTEGER
-      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

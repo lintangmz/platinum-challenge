@@ -1,7 +1,8 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = process.env.port || 3000
 const router = require('./routes/index')
+const passport = require('./lib/passport')
 const logger = (req, res, next) => {
     console.log(`${req.method} ${req.url}`)
     next()
@@ -12,10 +13,9 @@ app.set('view engine', 'ejs')
 app.use(logger)
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+app.use(passport.initialize())
 
-app.use('/', router)
-
-app.get('/', (req, res) => res.render('home'))
+app.use(router)
 
 const errorHandler = (err, req, res, next) => {
     console.log(err);
@@ -35,4 +35,6 @@ const notFoundHandler = (req, res, next) => {
 app.use(errorHandler)
 app.use(notFoundHandler)
 
-app.listen(port, () => console.log(`http: ${port}`))
+app.listen(port, () => {
+    console.log(`Server is Running!`)
+})

@@ -1,6 +1,6 @@
-const user = require('./user')
-const item = require('./item')
-const order = require('./order')
+const user = require('./user-controller')
+const item = require('./item-controller')
+const order = require('./order-controller')
 
 module.exports = {
     user,

@@ -1,13 +1,16 @@
 const express = require('express')
 const router = express.Router()
+const restrict = require('../middlewares/restrict')
 
-const userController = require('../controllers').user;
+const auth = require('../controllers/auth-controller');
+const userController = require('../controllers/').user;
 const itemController = require('../controllers').item;
 const orderController = require('../controllers').order;
 
 /* Register and Login */
-router.post('/api/register', userController.add);
-router.get('/api/login', userController.logIn);
+router.post('/api/register', auth.register);
+router.post('/api/login', auth.login);
+router.get('/api/profile', restrict, auth.profile);
 
 /* User Router */
 router.get('/api/users', userController.list);
