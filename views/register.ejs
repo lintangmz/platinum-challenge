@@ -1,0 +1,37 @@
+<html>
+    <form method="post" action="/api/register">
+        <% if(typeof error!= 'undefined') { %>
+            <p> <%= error %></p>
+        <% } %>
+        <label for="firstName">First Name</label>
+        <br>
+        <input required="text" type="text" name="firstName" placeholder="Masukkan FirstName Anda">
+
+        <br>
+
+        <label for="lastName">Last Name</label>
+        <br>
+        <input required="text" type="text" name="lastName" placeholder="Masukkan LastName Anda">
+
+        <br>
+        
+        <label for="username">Username</label>
+        <br>
+        <input required="text" type="text" name="username" placeholder="Masukkan Username Anda">
+
+        <br>
+
+        <label for="email">Email</label>
+        <br>
+        <input required="text" type="text" name="email" placeholder="Masukkan Email Anda">
+
+        <br>
+
+        <label for="password">Password</label>
+        <br>
+        <input required="text" type="password" name="password" placeholder="Masukkan password Anda">
+        <br>
+
+        <button type="submit">Register</button>
+    </form>
+</html>
