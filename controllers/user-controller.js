@@ -12,28 +12,6 @@ module.exports = {
             })
     },
 
-    // logIn(req, res) {
-    //     return User.findOne({
-    //         where: {
-    //             email: req.body.email,
-    //             password: req.body.password
-    //         }
-    //     })
-    //         .then((user) => {
-    //             if (!user) {
-    //                 return res.status(404).send({
-    //                     message: 'Log in gagal.'
-    //                 })
-    //             }
-    //             return res.status(201).send({
-    //                 message: 'Log in berhasil.'
-    //             })
-    //         })
-    //         .catch((error) => {
-    //             res.status(400).send(error)
-    //         })
-    // },
-
     getById(req, res) {
         return User.findByPk(req.params.id, {
             include: []
@@ -50,24 +28,6 @@ module.exports = {
                 res.status(400).send(error)
             })
     },
-
-    // add(req, res) {
-    //     return User.create({
-    //         firstName: req.body.firstName,
-    //         lastName: req.body.lastName,
-    //         userName: req.body.userName,
-    //         email: req.body.email,
-    //         password: req.body.password
-    //     })
-    //         .then(() => res.status(201).send({
-    //             message: 'Register Berhasil.'
-    //         }))
-    //         .catch(() => {
-    //             res.status(404).send({
-    //                 message: 'Register Gagal.'
-    //             });
-    //         });
-    // },
 
     update(req, res) {
         return User.findByPk(req.params.id)

@@ -8,13 +8,12 @@ const logger = (req, res, next) => {
     next()
 }
 
-app.set('view engine', 'ejs')
-
 app.use(logger)
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(passport.initialize())
 
+app.set('view engine', 'ejs')
 app.use(router)
 
 const errorHandler = (err, req, res, next) => {
